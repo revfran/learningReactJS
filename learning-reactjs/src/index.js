@@ -4,10 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  React.createElement("h1",
-  { style: { color: "blue" }},
-  "Hello World! I'm building a ReactJS app!"
-  ),
+  <h1>"Hello World! I'm building a ReactJS app!"</h1>,
   document.getElementById('root')
 );
 
