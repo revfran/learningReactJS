@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import App from "./App"
 
 ReactDOM.render(
-  <h1>"Hello World! I'm building a ReactJS app!"</h1>,
+  <App />,
   document.getElementById('root')
 );
 
