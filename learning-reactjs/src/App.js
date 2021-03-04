@@ -4,8 +4,20 @@ function Header(props) {
   return (<header><h1>"Learn React, by {props.owner}"</h1></header>)
 }
 
-function Main() {
-  return (<section><p>This is just the body of the page</p></section>)
+const awesomeList = [
+  "first item",
+  "second item",
+  "third item"
+]
+
+function Main(props) {
+  return (
+  <section>
+    <p>This is just the body of the page</p>
+    <ul>
+      {props.awesomeList.map((awesomeListItem) => (<li>{awesomeListItem}</li>))}
+    </ul>
+  </section>)
 }
 
 function Footer(props) {
@@ -16,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <Header owner="revfran"/>
-      <Main />
+      <Main awesomeList={awesomeList}/>
       <Footer year={new Date().getFullYear()}/>
     </div>
   );
