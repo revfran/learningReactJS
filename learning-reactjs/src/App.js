@@ -9,13 +9,16 @@ const awesomeList = [
   "second item",
   "third item"
 ]
-
+console.log(awesomeList)
+const awesomeListObj = awesomeList.map((awesomeListItem, index) => ({key: index, value: awesomeListItem}))
+console.log(awesomeListObj)
 function Main(props) {
   return (
   <section>
     <p>This is just the body of the page</p>
+    <img src="https://github.com/revfran.png" height={200} alt="revfran github"></img>
     <ul>
-      {props.awesomeList.map((awesomeListItem) => (<li>{awesomeListItem}</li>))}
+      {props.awesomeList.map((awesomeListItemObj) => (<li key={awesomeListItemObj.key}>{awesomeListItemObj.value}</li>))}
     </ul>
   </section>)
 }
@@ -28,7 +31,7 @@ function App() {
   return (
     <div className="App">
       <Header owner="revfran"/>
-      <Main awesomeList={awesomeList}/>
+      <Main awesomeList={awesomeListObj}/>
       <Footer year={new Date().getFullYear()}/>
     </div>
   );
