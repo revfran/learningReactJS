@@ -1,3 +1,4 @@
+import { useState } from "react"
 import './App.css';
 
 function Header({ owner }) {
@@ -30,17 +31,20 @@ function Footer(props) {
   return (<footer><p>It's cool to have a footer in place.</p><p>Copyright {props.year}</p></footer>)
 }
 
-function HeaderRenderer({ enableSecretHeader, owner }) {
+function HeaderRenderer({ enableSecretHeader, secretSetter, owner }) {
  return (<>{
   enableSecretHeader ? <SecretHeader owner={owner} /> : <Header owner={owner}/>
  }
+ <button onClick={() => secretSetter(true)}>Show secrets</button>
+ <button onClick={() => secretSetter(false)}>Hide secrets</button>
  </>);
 }
 
 function App() {
+  const [secretFlag, secretSetter] = useState(true)
   return (
     <div className="App">
-      <HeaderRenderer enableSecretHeader={false} owner="Revfran"/>
+      <HeaderRenderer enableSecretHeader={secretFlag} secretSetter={secretSetter} owner="Revfran"/>
       <Main awesomeList={awesomeListObj}/>
       <Footer year={new Date().getFullYear()}/>
     </div>
