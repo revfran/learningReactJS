@@ -1,11 +1,11 @@
 import './App.css';
 
-function Header(props) {
-  return (<header><h1>"Learn React, by {props.owner}"</h1></header>)
+function Header({ owner }) {
+  return (<header><h1>"Learn React, by {owner}"</h1></header>)
 }
 
-function SecretHeader(props) {
-  return (<header><h1>"Congrats, {props.owner}. You unlocked the secretHeader"</h1></header>)
+function SecretHeader({ owner }) {
+  return (<header><h1>"Congrats, {owner}. You unlocked the secretHeader"</h1></header>)
 }
 
 const awesomeList = [
@@ -30,9 +30,9 @@ function Footer(props) {
   return (<footer><p>It's cool to have a footer in place.</p><p>Copyright {props.year}</p></footer>)
 }
 
-function HeaderRenderer(props) {
+function HeaderRenderer({ enableSecretHeader, owner }) {
  return (<>{
-  props.enableSecretHeader ? <SecretHeader owner={props.owner} /> : <Header owner={props.owner}/>
+  enableSecretHeader ? <SecretHeader owner={owner} /> : <Header owner={owner}/>
  }
  </>);
 }
