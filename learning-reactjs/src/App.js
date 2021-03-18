@@ -17,9 +17,16 @@ const awesomeList = [
 const awesomeListObj = awesomeList.map((awesomeListItem, index) => ({key: index, value: awesomeListItem}))
 
 function Main(props) {
+  const [checked, setChecked] = useState(false)
+
+  function toggle() { setChecked((checked) => !checked) }
+
   return (
   <section>
     <p>This is just the body of the page</p>
+    <p>
+     <input type="checkbox" value={checked} onChange={toggle}/>
+     {checked ? "checked" : "not checked"}</p>
     <img src="https://github.com/revfran.png" height={200} alt="revfran github"></img>
     <ul>
       {props.awesomeList.map((awesomeListItemObj) => (<li key={awesomeListItemObj.key}>{awesomeListItemObj.value}</li>))}
