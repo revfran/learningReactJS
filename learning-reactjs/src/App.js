@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import './App.css';
 
 function Header({ owner }) {
@@ -42,6 +42,10 @@ function HeaderRenderer({ enableSecretHeader, secretSetter, owner }) {
 
 function App() {
   const [secretFlag, secretSetter] = useState(true)
+
+  useEffect( () => {
+    console.log(`Secret flag changed to ${secretFlag}`)
+  })
   return (
     <div className="App">
       <HeaderRenderer enableSecretHeader={secretFlag} secretSetter={secretSetter} owner="Revfran"/>
