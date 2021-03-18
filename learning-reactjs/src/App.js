@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useReducer} from "react"
 import './App.css';
 
 function Header({ owner }) {
@@ -14,24 +14,24 @@ const awesomeList = [
   "second item",
   "third item"
 ]
-const awesomeListObj = awesomeList.map((awesomeListItem, index) => ({key: index, value: awesomeListItem}))
+const awesomeListObj = awesomeList.map((awesomeListItem, index) => ({ key: index, value: awesomeListItem }))
 
 function Main(props) {
-  const [checked, setChecked] = useState(false)
-
-  function toggle() { setChecked((checked) => !checked) }
+  const [checked, toggle] = useReducer(
+    (checked) => !checked,
+    false)
 
   return (
-  <section>
-    <p>This is just the body of the page</p>
-    <p>
-     <input type="checkbox" value={checked} onChange={toggle}/>
-     {checked ? "checked" : "not checked"}</p>
-    <img src="https://github.com/revfran.png" height={200} alt="revfran github"></img>
-    <ul>
-      {props.awesomeList.map((awesomeListItemObj) => (<li key={awesomeListItemObj.key}>{awesomeListItemObj.value}</li>))}
-    </ul>
-  </section>)
+    <section>
+      <p>This is just the body of the page</p>
+      <p>
+        <input type="checkbox" value={checked} onChange={toggle} />
+        {checked ? "checked" : "not checked"}</p>
+      <img src="https://github.com/revfran.png" height={200} alt="revfran github"></img>
+      <ul>
+        {props.awesomeList.map((awesomeListItemObj) => (<li key={awesomeListItemObj.key}>{awesomeListItemObj.value}</li>))}
+      </ul>
+    </section>)
 }
 
 function Footer(props) {
@@ -39,25 +39,25 @@ function Footer(props) {
 }
 
 function HeaderRenderer({ enableSecretHeader, secretSetter, owner }) {
- return (<>{
-  enableSecretHeader ? <SecretHeader owner={owner} /> : <Header owner={owner}/>
- }
- <button onClick={() => secretSetter(true)}>Show secrets</button>
- <button onClick={() => secretSetter(false)}>Hide secrets</button>
- </>);
+  return (<>{
+    enableSecretHeader ? <SecretHeader owner={owner} /> : <Header owner={owner} />
+  }
+    <button onClick={() => secretSetter(true)}>Show secrets</button>
+    <button onClick={() => secretSetter(false)}>Hide secrets</button>
+  </>);
 }
 
 function App() {
   const [secretFlag, secretSetter] = useState(true)
 
-  useEffect( () => {
+  useEffect(() => {
     console.log(`Secret flag changed to ${secretFlag}`)
   })
   return (
     <div className="App">
-      <HeaderRenderer enableSecretHeader={secretFlag} secretSetter={secretSetter} owner="Revfran"/>
-      <Main awesomeList={awesomeListObj}/>
-      <Footer year={new Date().getFullYear()}/>
+      <HeaderRenderer enableSecretHeader={secretFlag} secretSetter={secretSetter} owner="Revfran" />
+      <Main awesomeList={awesomeListObj} />
+      <Footer year={new Date().getFullYear()} />
     </div>
   );
 }
